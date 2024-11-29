@@ -23,17 +23,18 @@ router.get("/add-new", (req,res)=>{
     })
 })
 
-router.post("/", upload.single("coverImage"), (req,res)=>{
-    // const { title, body} = req.body;
-    // const blog = await Blog.create({
-    // body,
-    // title,
-    // createdBy: req.user._id,
-    // coverImageURL: `/uploads/${req.file.filename}`
-    console.log(req.body);
-    console.log(req.file);
-   //});
-   return res.redirect(`/`);
+router.post("/", upload.single("coverImage"), async (req,res)=>{
+  const { title, body } = req.body 
+  const blog = await Blog.create({
+      body,
+      title,
+      createdBy: req._id,
+      coverImageURL: `/uploads/${req.file.filename}`,
+    });
+    // console.log(req.body);
+    // console.log(req.file);
+  //  //});
+   return res.redirect(`/blog/${blog._id}`);
 })
 
 export default router;
