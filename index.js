@@ -6,9 +6,17 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import { checkForAuthenticationCookie } from "./middlewares/authentication.middleware.js";
 import Blog from "./models/blog.models.js";
+import { fileURLToPath } from "url";
+
 
 const app=express();
 const PORT= 8000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve the public directory
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 mongoose.connect("mongodb://localhost:27017/blog-it").then(e => console.log("MongoDB Connected"));
 
