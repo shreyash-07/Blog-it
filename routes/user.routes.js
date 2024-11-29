@@ -37,4 +37,11 @@ router.post("/signup", async(req,res)=>{
     });
     return res.redirect("/");
 })
+
+// router.get("/", (req, res) => {
+//     res.render("home", {
+//       user: req.user, // Assuming `req.user` contains logged-in user details
+//     });
+//   });
+  
 export default router;
